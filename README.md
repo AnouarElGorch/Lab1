@@ -31,6 +31,7 @@ mlops-lab-01/
 ## 🚀 Guide de Mise en Place
 
 ### Étape 1 : Initialiser la Structure du Projet
+<img width="619" height="528" alt="image" src="https://github.com/user-attachments/assets/51fb6008-cefa-44f6-ab4f-721554af70db" />
 
 Créer les dossiers nécessaires :
 
@@ -39,6 +40,8 @@ New-Item -ItemType Directory -Force data, models, registry, logs, src
 ```
 
 ### Étape 2 : Préparer l'Environnement Python
+<img width="945" height="255" alt="image" src="https://github.com/user-attachments/assets/6d89ca56-6eeb-493f-8de6-c615225d6bc3" />
+<img width="945" height="245" alt="image" src="https://github.com/user-attachments/assets/e74a388d-7a9d-4dba-97ec-32a75cbadad9" />
 
 Créer et activer un environnement virtuel :
 
@@ -68,6 +71,7 @@ python src/generate_data.py
 ```
 
 **Fichier produit :** `data/raw.csv`
+<img width="945" height="324" alt="image" src="https://github.com/user-attachments/assets/9cc8f8a9-a41a-4b88-95a6-fb2f9453ef9e" />
 
 ### Étape 4 : Préparer les Données + Quality Checks
 
@@ -84,6 +88,7 @@ Cette étape effectue :
 - Encodage des variables catégorielles
 
 **Fichier produit :** `data/processed.csv`
+<img width="945" height="314" alt="image" src="https://github.com/user-attachments/assets/c1de605e-0d70-4ab4-ac27-321f720d395f" />
 
 ### Étape 5 : Entraîner, Versionner et Valider le Modèle
 
@@ -105,6 +110,7 @@ Le script effectue :
 - `registry/current_model.txt`
 - `registry/metadata.json`
 - `registry/train_stats.json`
+<img width="945" height="406" alt="image" src="https://github.com/user-attachments/assets/fcf0dd01-e6d4-413a-a107-176faab1a4c3" />
 
 ### Étape 6 : Inspecter la Registry et le Modèle Courant
 
@@ -113,6 +119,7 @@ Afficher le modèle actif :
 ```powershell
 Get-Content registry/current_model.txt
 ```
+<img width="945" height="414" alt="image" src="https://github.com/user-attachments/assets/ab534302-19fe-4e01-849f-695d20b065bd" />
 
 Afficher les métadonnées :
 
@@ -125,6 +132,8 @@ Afficher les statistiques d'entraînement :
 ```powershell
 Get-Content registry/train_stats.json
 ```
+<img width="531" height="175" alt="image" src="https://github.com/user-attachments/assets/f549244c-91f6-497a-90ef-a5b626e28789" />
+<img width="945" height="896" alt="image" src="https://github.com/user-attachments/assets/05fdba8b-1b1d-42ec-8ce5-e2678cea879e" />
 
 ### Étape 7 : Créer une API /predict qui Utilise le Modèle Courant
 
@@ -135,6 +144,7 @@ uvicorn src.api:app --reload
 ```
 
 L'API est accessible sur : `http://127.0.0.1:8000`
+<img width="945" height="276" alt="image" src="https://github.com/user-attachments/assets/fe3f5a34-ac74-4321-a4a4-0d60e1b64016" />
 
 **Endpoints disponibles :**
 - `GET /` - Documentation
@@ -143,17 +153,11 @@ L'API est accessible sur : `http://127.0.0.1:8000`
 
 **Exemple de requête :**
 
-```powershell
-curl -X POST "http://127.0.0.1:8000/predict" `
-  -H "Content-Type: application/json" `
-  -d '{
-    "tenure": 12,
-    "monthly_charges": 65.5,
-    "total_charges": 786.0,
-    "contract_type": "Month-to-month",
-    "payment_method": "Electronic check"
-  }'
-```
+
+<img width="945" height="406" alt="image" src="https://github.com/user-attachments/assets/004e6656-46f9-4068-94ed-53648120b1b1" />
+<img width="945" height="147" alt="image" src="https://github.com/user-attachments/assets/34a4778c-c04b-4d4b-b6b9-ae8e48a97887" />
+<img width="945" height="136" alt="image" src="https://github.com/user-attachments/assets/c59714d8-be5e-4f2f-9069-7313a9f80c43" />
+
 
 ### Étape 8 : Détecter une Dérive des Données via les Logs
 
@@ -168,6 +172,7 @@ Cette étape :
 - Compare avec les données d'entraînement
 - Détecte les changements de distribution
 - Alerte en cas de dérive significative
+<img width="945" height="485" alt="image" src="https://github.com/user-attachments/assets/6a936564-4afc-43fd-8118-787daa5a83dd" />
 
 ### Étape 9 : Gérer les Versions du Modèle et Revenir en Arrière
 
@@ -176,12 +181,14 @@ Revenir à une version précédente :
 ```powershell
 python src/rollback.py
 ```
+<img width="945" height="261" alt="image" src="https://github.com/user-attachments/assets/4b623084-cd2d-49a1-8752-cc8914649d26" />
 
 Le script permet :
 - Lister toutes les versions disponibles
 - Restaurer une version antérieure
 - Mettre à jour la registry
 - Valider le rollback
+<img width="945" height="134" alt="image" src="https://github.com/user-attachments/assets/6b916ba2-8a2f-4c0e-a2f0-42f916706be3" />
 
 ## 📊 Métriques et Monitoring
 
@@ -190,6 +197,8 @@ Les performances des modèles sont suivies via :
 - **Precision, Recall, F1-Score** : Métriques par classe
 - **AUC-ROC** : Aire sous la courbe ROC
 - **Drift Score** : Détection de dérive des données
+<img width="788" height="213" alt="image" src="https://github.com/user-attachments/assets/26ac51f2-e1fb-44c6-8013-6d654a63b8fd" />
+<img width="788" height="213" alt="image" src="https://github.com/user-attachments/assets/02064c5d-206f-43d4-842d-72a218d3262a" />
 
 ## 🔧 Technologies Utilisées
 
@@ -200,30 +209,7 @@ Les performances des modèles sont suivies via :
 - **Uvicorn** : Serveur ASGI
 - **joblib** : Sérialisation des modèles
 
-## 📝 Notes Importantes
 
-- Tous les modèles sont versionnés automatiquement avec timestamp
-- La registry maintient un historique complet des modèles
-- Les logs d'inférence permettent le monitoring en production
-- Le rollback est possible à tout moment vers n'importe quelle version
-
-## 🎯 Bonnes Pratiques MLOps Implémentées
-
-1. **Versioning** : Tous les modèles sont versionnés et traçables
-2. **Registry** : Gestion centralisée des métadonnées
-3. **Validation** : Quality checks sur les données
-4. **API** : Interface standardisée pour l'inférence
-5. **Monitoring** : Détection de dérive des données
-6. **Rollback** : Capacité de revenir en arrière rapidement
-
-## 🚦 Prochaines Étapes
-
-- [ ] Ajouter des tests unitaires
-- [ ] Implémenter CI/CD
-- [ ] Conteneurisation avec Docker
-- [ ] Orchestration avec Kubernetes
-- [ ] Monitoring avancé avec Prometheus/Grafana
-- [ ] A/B Testing des modèles
 
 ---
 
