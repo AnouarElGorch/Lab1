@@ -189,7 +189,7 @@ Le script permet :
 - Mettre à jour la registry
 - Valider le rollback
 <img width="945" height="134" alt="image" src="https://github.com/user-attachments/assets/6b916ba2-8a2f-4c0e-a2f0-42f916706be3" />
-
+<img width="788" height="213" alt="image" src="https://github.com/user-attachments/assets/02064c5d-206f-43d4-842d-72a218d3262a" />
 ## 📊 Métriques et Monitoring
 
 Les performances des modèles sont suivies via :
@@ -197,26 +197,10 @@ Les performances des modèles sont suivies via :
 - **Precision, Recall, F1-Score** : Métriques par classe
 - **AUC-ROC** : Aire sous la courbe ROC
 - **Drift Score** : Détection de dérive des données
-<img width="788" height="213" alt="image" src="https://github.com/user-attachments/assets/26ac51f2-e1fb-44c6-8013-6d654a63b8fd" />
-<img width="788" height="213" alt="image" src="https://github.com/user-attachments/assets/02064c5d-206f-43d4-842d-72a218d3262a" />
-
-## 🔧 Technologies Utilisées
-
-- **Python 3.x**
-- **pandas** : Manipulation de données
-- **scikit-learn** : Machine Learning
-- **FastAPI** : API REST
-- **Uvicorn** : Serveur ASGI
-- **joblib** : Sérialisation des modèles
-
 
 
 ---
 
-**Date de création :** 14 décembre 2025  
-**Auteur :** Anouar El Gorch 
-**Master:** SDIA  
-**Version :** 1.0
 
 ## 🧪 Lab 2 — Workflow Git (10 étapes)
 
@@ -224,35 +208,100 @@ Ce deuxième lab documente le flux Git réalisé pour gérer le cycle de vie du 
 
 - **Étape 1: Initialiser Git**
 	- Commande: `git init` dans la racine du projet.
+<img width="945" height="506" alt="image" src="https://github.com/user-attachments/assets/45515612-8a42-4493-a9bb-bfb26fd8f5ad" />
+    - Commande: `git status` dans la racine du projet.
+<img width="945" height="288" alt="image" src="https://github.com/user-attachments/assets/c711548f-a716-4592-94e9-483f7cc527db" />
 
 - **Étape 2: Premier commit**
 	- Ajout des fichiers initiaux et commit de base.
-	- Exemple: `git add .` puis `git commit -m "Initial commit: MLOps lab setup"`.
+ - <img width="945" height="157" alt="image" src="https://github.com/user-attachments/assets/f41e89b4-8f4f-4aa6-9226-4e7755991f48" />
+
+	- Exemple: `git log --oneline` .
+<img width="945" height="191" alt="image" src="https://github.com/user-attachments/assets/98e23388-e063-402c-93fe-0b66afa96654" />
 
 - **Étape 3: Observer une modification avec git diff**
 	- Modification de `src/monitor_drift.py` (ajustement `z_threshold`, ex. 2.5 → 2.0) puis `git diff` pour visualiser les changements.
+   <img width="945" height="70" alt="image" src="https://github.com/user-attachments/assets/0067a547-1035-43e5-98df-9bad9d22f2cd" />
+<img width="945" height="70" alt="image" src="https://github.com/user-attachments/assets/d9245e15-0936-4bbc-944c-0a6901e8c155" />
 
+<img width="945" height="463" alt="image" src="https://github.com/user-attachments/assets/5c74b29e-129b-42f7-b8dc-d0049cfcf982" />
+   - Visualisation Modification Afficher les différences en staging : git diff --staged.
+  <img width="945" height="64" alt="image" src="https://github.com/user-attachments/assets/f7cb3e76-c279-4005-99fa-d74e054a0226" />
+  <img width="945" height="748" alt="image" src="https://github.com/user-attachments/assets/3dd94deb-b124-4e45-9123-1fd9cc1fef2c" />
+   - Commit
+   - <img width="945" height="102" alt="image" src="https://github.com/user-attachments/assets/9de5c3c6-8f53-439e-89c3-ba0f6c81bfbf" />
+
+   
 - **Étape 4: Créer une branche feature et ajouter une logique**
 	- Branche: `git checkout -b feature/api-request-id`.
+<img width="945" height="80" alt="image" src="https://github.com/user-attachments/assets/8b81a3fe-3150-476f-8586-b45f5f54951e" />
+
 	- Modification de `src/api.py`: génération automatique d’un `request_id` (UUID hex) quand non fourni, propagation dans la réponse et les logs, et import de `uuid`.
+<img width="945" height="80" alt="image" src="https://github.com/user-attachments/assets/7516e016-6257-42fd-ab9f-833ddf1fa3e9" />
+<img width="945" height="153" alt="image" src="https://github.com/user-attachments/assets/10609768-a886-433d-b837-b3a85b8546eb" />
+<img width="945" height="153" alt="image" src="https://github.com/user-attachments/assets/10052644-2bcb-4a79-9cab-f4f8be89dbdf" />
 
 - **Étape 5: Fusionner la branche feature**
 	- Retour sur la branche principale et merge de la feature: `git checkout main` puis `git merge feature/api-request-id`.
+<img width="945" height="222" alt="image" src="https://github.com/user-attachments/assets/c321a5e4-2243-4bed-ac49-40f3a03d948b" />
+<img width="945" height="215" alt="image" src="https://github.com/user-attachments/assets/f9836309-d85a-43b2-ab9b-da9032bf26f7" />
+
 
 - **Étape 6: Créer et résoudre un conflit de merge sur `src/train.py`**
+<img width="945" height="58" alt="image" src="https://github.com/user-attachments/assets/89504cde-7a9c-48b7-8ae2-fcc1ed37d612" />
+
 	- Modifications concurrentes de `gate_f1` (ex. 0.50 vs 0.62) et résolution à une valeur choisie (ex. 0.60) dans `src/train.py`.
+<img width="945" height="367" alt="image" src="https://github.com/user-attachments/assets/df3d4f9b-fbd9-43e2-a334-b764eb2a6511" />
+<img width="945" height="367" alt="image" src="https://github.com/user-attachments/assets/c717991f-4a2a-4a0f-996a-1f2fc7c7cdbe" />
+<img width="945" height="80" alt="image" src="https://github.com/user-attachments/assets/8c9d3031-d632-43dc-8a58-a8bb75413dd8" />
+
+
 
 - **Étape 7: Utiliser git stash**
+<img width="945" height="185" alt="image" src="https://github.com/user-attachments/assets/0749c970-430e-46bf-b361-b0761cb3ca69" />
 	- Ajout d’un commentaire TODO dans `src/rollback.py`, puis `git stash` pour mettre de côté les changements temporaires.
+<img width="945" height="381" alt="image" src="https://github.com/user-attachments/assets/884c1e47-4765-47b2-b2b9-292a89358e54" />
+<img width="945" height="333" alt="image" src="https://github.com/user-attachments/assets/4eaf2d32-72a0-4be8-a033-7ee3b3497064" />
+<img width="945" height="448" alt="image" src="https://github.com/user-attachments/assets/306a450c-a16d-4f8e-a3c7-2810e1ddce99" />
+
 
 - **Étape 8: Tester git reset sur un fichier d’expérimentation**
+
+<img width="945" height="372" alt="image" src="https://github.com/user-attachments/assets/4cb112d6-9de9-45a1-a59a-2691dcc35a46" />
+
+
 	- Utilisation de `git reset` (soft/mixed/hard selon besoin) pour revenir sur un état souhaité d’un fichier de test.
 
+<img width="945" height="206" alt="image" src="https://github.com/user-attachments/assets/dfab1ea7-8c48-42e0-a21b-10259064ec07" />
+-  `git reset --soft` 
+<img width="945" height="206" alt="image" src="https://github.com/user-attachments/assets/45531e4d-7cc8-4200-b532-79ba8d57e79d" />
+-  `git reset HEAD~1 MIXED` 
+<img width="945" height="408" alt="image" src="https://github.com/user-attachments/assets/2624dd5a-e4f9-448a-aa4c-824f113f7389" />
+
+-  `git reset --hard` .
+<img width="945" height="269" alt="image" src="https://github.com/user-attachments/assets/435ca61a-927a-4a1e-aa50-36daf07063eb" />
+
+
+
 - **Étape 9: Annuler un commit avec git revert**
+<img width="945" height="337" alt="image" src="https://github.com/user-attachments/assets/47c055ec-6c46-4ba2-9e72-1d662ddca95b" />
+
 	- Ajout d’un changement non souhaité dans `src/api.py` (ex. `# BAD CHANGE`) puis annulation via `git revert <commit>` pour préserver l’historique.
+<img width="945" height="371" alt="image" src="https://github.com/user-attachments/assets/f9ff8b8b-158f-4463-a9c3-52785d281d65" />
+
+<img width="945" height="468" alt="image" src="https://github.com/user-attachments/assets/ec4a6054-7f48-46f7-9115-dc528cb25357" />
+
 
 - **Étape 10: Rebase d’une branche feature sur la branche principale**
+<img width="945" height="87" alt="image" src="https://github.com/user-attachments/assets/048fb3e7-8bd0-4eaf-bbfc-8ab39c1561d7" />
+
+<img width="945" height="99" alt="image" src="https://github.com/user-attachments/assets/343b0fdd-7570-4631-808b-6bf0eee2b8d4" />
+
 	- Rebase pour réappliquer proprement la feature sur l’historique linéaire: `git checkout feature/...` puis `git rebase main`.
+<img width="945" height="102" alt="image" src="https://github.com/user-attachments/assets/ebd1cea1-6c10-4ecd-bea1-1fe3854c2dea" />
+<img width="945" height="210" alt="image" src="https://github.com/user-attachments/assets/0a0b55f1-010b-4e12-b87f-35a2f9f5db08" />
+<img width="945" height="462" alt="image" src="https://github.com/user-attachments/assets/0b1d239f-5e08-48d9-9fdd-b01754e066e2" />
+
 
 ### Commandes utiles (récapitulatif)
 
@@ -270,9 +319,7 @@ git revert <commit_sha>
 git rebase main
 ```
 
-### Fichiers concernés (exemples du lab)
-
-- `src/monitor_drift.py` — ajuster `z_threshold` pour la sensibilité.
-- `src/api.py` — ajout de `request_id` auto pour tracer les requêtes.
-- `src/train.py` — résolution de conflit sur `gate_f1` (valeur choisie: 0.60).
-- `src/rollback.py` — ajout d’un commentaire TODO (ex. options CLI/dry-run).
+**Date de création :** 14 décembre 2025  
+**Auteur :** Anouar El Gorch 
+**Master:** SDIA  
+**Version :** 1.0
