@@ -217,3 +217,62 @@ Les performances des modèles sont suivies via :
 **Auteur :** Anouar El Gorch 
 **Master:** SDIA  
 **Version :** 1.0
+
+## 🧪 Lab 2 — Workflow Git (10 étapes)
+
+Ce deuxième lab documente le flux Git réalisé pour gérer le cycle de vie du code et des modèles. Les étapes ci‑dessous ont été exécutées et validées dans ce dépôt.
+
+- **Étape 1: Initialiser Git**
+	- Commande: `git init` dans la racine du projet.
+
+- **Étape 2: Premier commit**
+	- Ajout des fichiers initiaux et commit de base.
+	- Exemple: `git add .` puis `git commit -m "Initial commit: MLOps lab setup"`.
+
+- **Étape 3: Observer une modification avec git diff**
+	- Modification de `src/monitor_drift.py` (ajustement `z_threshold`, ex. 2.5 → 2.0) puis `git diff` pour visualiser les changements.
+
+- **Étape 4: Créer une branche feature et ajouter une logique**
+	- Branche: `git checkout -b feature/api-request-id`.
+	- Modification de `src/api.py`: génération automatique d’un `request_id` (UUID hex) quand non fourni, propagation dans la réponse et les logs, et import de `uuid`.
+
+- **Étape 5: Fusionner la branche feature**
+	- Retour sur la branche principale et merge de la feature: `git checkout main` puis `git merge feature/api-request-id`.
+
+- **Étape 6: Créer et résoudre un conflit de merge sur `src/train.py`**
+	- Modifications concurrentes de `gate_f1` (ex. 0.50 vs 0.62) et résolution à une valeur choisie (ex. 0.60) dans `src/train.py`.
+
+- **Étape 7: Utiliser git stash**
+	- Ajout d’un commentaire TODO dans `src/rollback.py`, puis `git stash` pour mettre de côté les changements temporaires.
+
+- **Étape 8: Tester git reset sur un fichier d’expérimentation**
+	- Utilisation de `git reset` (soft/mixed/hard selon besoin) pour revenir sur un état souhaité d’un fichier de test.
+
+- **Étape 9: Annuler un commit avec git revert**
+	- Ajout d’un changement non souhaité dans `src/api.py` (ex. `# BAD CHANGE`) puis annulation via `git revert <commit>` pour préserver l’historique.
+
+- **Étape 10: Rebase d’une branche feature sur la branche principale**
+	- Rebase pour réappliquer proprement la feature sur l’historique linéaire: `git checkout feature/...` puis `git rebase main`.
+
+### Commandes utiles (récapitulatif)
+
+```powershell
+git init
+git status
+git add .
+git commit -m "Initial commit"
+git checkout -b feature/api-request-id
+git diff
+git merge feature/api-request-id
+git stash
+git reset --soft HEAD~1
+git revert <commit_sha>
+git rebase main
+```
+
+### Fichiers concernés (exemples du lab)
+
+- `src/monitor_drift.py` — ajuster `z_threshold` pour la sensibilité.
+- `src/api.py` — ajout de `request_id` auto pour tracer les requêtes.
+- `src/train.py` — résolution de conflit sur `gate_f1` (valeur choisie: 0.60).
+- `src/rollback.py` — ajout d’un commentaire TODO (ex. options CLI/dry-run).
