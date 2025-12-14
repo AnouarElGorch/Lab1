@@ -23,6 +23,7 @@ d’inférence léger.
 
 import json
 import time
+import uuid
 from pathlib import Path
 from typing import Any, Optional
 
@@ -267,6 +268,8 @@ def predict(req: PredictRequest) -> dict[str, Any]:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
+    request_id = req.request_id or uuid.uuid4().hex
+
     # Normalisation minimale côté API (cohérente avec le prétraitement)
     features = {
         "tenure_months": req.tenure_months,
@@ -293,7 +296,7 @@ def predict(req: PredictRequest) -> dict[str, Any]:
 
 
     out: dict[str, Any] = {
-        "request_id": req.request_id,
+        "request_id": request_id,
         "model_version": model_name,
         "prediction": pred,
         "probability": round(proba, 6),
