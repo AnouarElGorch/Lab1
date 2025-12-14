@@ -214,5 +214,6 @@ Les performances des modèles sont suivies via :
 ---
 
 **Date de création :** 14 décembre 2025  
-**Auteur :** MLOps Lab  
+**Auteur :** Anouar El Gorch 
+**Master:** SDIA  
 **Version :** 1.0
