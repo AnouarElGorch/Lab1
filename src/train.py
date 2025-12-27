@@ -315,7 +315,7 @@ def build_model_pipeline(
 
         max_iter=200,
 
-        random_state=42,
+        random_state=seed,
 
     )
 
@@ -463,7 +463,7 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.60) -> None:
 
         test_size=0.25,
 
-        random_state=42,
+        random_state=seed,
 
         stratify=y,
 
@@ -601,7 +601,19 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.60) -> None:
 
         )
 
+    if entry["passed_gate"]:
+        print("------------------------------------------------------------")
+        REGISTRY_DIR.mkdir(parents=True, exist_ok=True)
+        CURRENT_MODEL_PATH.write_text(model_filename, encoding="utf-8")
 
+        # Ajout : alias stable pour le pipeline DVC (ne supprime pas l'historique)
+        stable_model_path = MODELS_DIR / "model.joblib"
+        joblib.dump(model_pipeline, stable_model_path)
+
+        print(f"[DEPLOY] Modèle activé : {model_filename}")
+        print(f"[DEPLOY] Alias stable : {stable_model_path}")
+    else:
+        print("[DEPLOY] Refusé : F1 insuffisante ou baseline non battue.")
 
 
 

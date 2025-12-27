@@ -186,7 +186,7 @@ def find_best_threshold(
 
 
 
-def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.60) -> None:
+def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.70) -> None:
     """
     Entraîne un modèle de churn, évalue ses performances, enregistre
     le modèle et ses métadonnées, et décide s’il passe le gate F1.
@@ -329,8 +329,28 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.60) -> None:
     else:
         print("[DEPLOY] Refusé : F1 insuffisante ou baseline non battue.")
 
+    REPORTS_DIR = Path("reports")
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    metrics_path = REPORTS_DIR / "metrics.json"
+
+    with metrics_path.open("w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "accuracy": metrics["accuracy"],
+                "precision": metrics["precision"],
+                "recall": metrics["recall"],
+                "f1": metrics["f1"],
+                "best_threshold": metrics["best_threshold"],
+                "baseline_f1": metrics["baseline_f1"],
+            },
+            f,
+            indent=2,
+        )
+
+    print(f"[OK] Metrics written to {metrics_path}")
+
 
 
 if __name__ == "__main__":
     main()
-    

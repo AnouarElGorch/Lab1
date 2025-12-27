@@ -430,8 +430,7 @@ def main() -> None:
 
     print(f"[OK] Statistiques d'entraînement générées : {TRAIN_STATS_PATH}")
 
-
-
+print("all good.")
 
 
 if __name__ == "__main__":

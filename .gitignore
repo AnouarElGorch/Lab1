@@ -6,3 +6,4 @@ models/
 data/*.csv
 !data/*.csv.dvc
 
+/models
